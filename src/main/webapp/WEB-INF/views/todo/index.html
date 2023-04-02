@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Description</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="task : ${task}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.taskStatus}"></td>
+        <td>
+          <a th:href="@{/todo/{id}/edit(id=${task.id})}">Edit</a>
+        </td>
+        <td>
+          <form th:method="DELETE" th:action="@{/todo/{id}(id=${task.getId})}">
+              <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <a th:href="@{/todo/new}">Add new task</a>
+  <hr>
+  <nav>
+    <ul>
+      <li th:each="page : ${pageList}">
+        <a th:href="@{/todo?(page=${page})}" th:text="${page}">q</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+</body>
+</html>

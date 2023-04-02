@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit task</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/todo/{id}(id=${task.getId()})}" th:object="${task}">
+  <div>
+    <label for="desctiption">Desctiption</label>
+    <input type="text" th:field="*{description}" id="desctiption">
+      <br>
+    <label for="taskStatus">Task Status</label>
+<!--    <input type="text" th:field="*{taskStatus}" id="taskStatus">-->
+      <select required th:field="*{taskStatus}" id="taskStatus">
+          <option value="IN_PROGRESS">IN PROGRESS</option>
+          <option value="PAUSED">PAUSED</option>
+          <option value="DONE">DONE</option>
+      </select>
+      <br>
+    <input type="submit" value="Update task">
+  </div>
+</form>
+<hr>
+</body>
+</html>
